@@ -15,6 +15,7 @@ const session = require('express-session')
 const methodOverride = require('method-override')
 
 
+
 initializePassport(
     passport,
     email => users.find(user => user.email === email),
@@ -36,6 +37,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 app.use(express.static('images'));
+app.use(express.urlencoded({ extended: false }))
 
 
 
@@ -110,4 +112,5 @@ function checkNotAuthenticated(req, res, next) {
 
 
 // console.log(users); //dispalying newly registrated users
-app.listen(3000) 
+app.listen(3000);
+console.log("Server is running on port 3000");
